@@ -1,0 +1,115 @@
+
+
+#menu ul li.nivel1 { 
+width: 240px;
+margin: 0px;
+padding: 0px 0px 0px 0px; 
+outline: 0;
+}
+
+
+#menu ul li a {display: block;
+text-decoration: none;
+color: #fff;
+background-color: #336699;
+border: solid 1px #fff;
+border-top: none;
+padding: 8px;
+position: relative;
+
+}
+
+
+#menu ul li ul {display: none;
+margin:  0px 0px 0px 78px;
+width:200px;
+}
+#menu ul li ul.nivel3 {display: none;
+margin:  0px 0px 0px 0px;
+margin-left:28%;
+
+}
+#menu ul li ul li a {width: 144px;
+background-color: #336699;
+color: #FFF;
+width:200px;
+}
+
+#menu ul li ul li a:hover {position: relative;
+background-color: #8cb2d9;
+color: #000;
+width:230px;
+border-right:5px solid #09F;/*PARA el border del ultimo*/
+}
+@media (min-width:768px) and (max-width:768px) {
+	#menu ul li.nivel1 { 
+width: 180px;
+margin: 0px;
+padding: 0px 0px 0px 0px; 
+outline: 0;
+}
+
+#menu ul li a {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size:12px;
+}	
+#menu ul li ul {display: none;
+margin:  0px 0px 0px 18px;
+width:200px;
+}
+#menu ul li ul li a {width: 144px;
+background-color: #336699;
+color: #FFF;
+width:180px;
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+font-size:12;
+}
+
+#menu ul li ul li a:hover {
+position: relative;
+background-color: #8cb2d9;
+color: #000;
+width:180px;
+border-right:5px solid #09F;/*PARA el border del ultimo*/
+}
+}
+
+#menu {  text-align: center;
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;         
+font-size: 1em;
+margin:  0px 0px 0px 0px; 
+padding: px; outline: 0;
+}
+#menu ul { list-style-type: none;float: left;
+margin: 0px;
+padding: 0px; outline: 0;
+}
+
+#menu ul li.primera { border-top: solid 1px #FFF;
+margin: 0px;
+padding: 0px; outline: 0;
+}
+
+#menu ul li:hover {position: relative;
+background-color: #8cb2d9;
+color: #000;
+}
+
+#menu ul li a:hover, #menu ul li:hover > a.nivel1 {background-color: #8cb2d9;
+color: #000;
+position: relative;
+margin:  0px 0px 0px 0px;
+}
+#menu ul li a.nivel1 {display: block!important;display: none;
+position: relative;
+}
+
+#menu ul li a:hover ul, #menu ul li:hover > ul {display: block;
+position: absolute;left: 161px;top:-1px!important;top: -31px;
+}
+
+table.falsa {border-collapse:collapse;
+border:0px;
+float: left;
+position: relative;
+}

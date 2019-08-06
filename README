@@ -1,0 +1,232 @@
+# confucionotas
+
+El proyecto confucionotas contempla como objetivo asistir al personal administrativo del Instotito Confucio de la Universidad de Venezuela el en ingreso, prosecución y egreso de los estudiantes del idioma y cultura china.
+
+## Caracteristicas Incluidas:
+
+- Registro de inscripción.
+- Descarga de Listados varios.
+- Carga de Notas.
+- Emisión de Certificados.
+- Verificación de Certificado.
+
+## Instalación
+
+Para la correcta instalación de la aplicación confucionotas se deben seguir los siguientes pasos:
+
+- [Descargar e inicializar el repositorio del proyecto.]
+- [Actualizar las librerias del Framework Symfony2.]
+- [Configurar el Servidor Virtual de apache para la aplicación confucionotas]
+- [Crear la Base de datos en el servidor Postgres.]
+- [Actualizar el esquema de la base de datos.]
+- [Crear las variables de entorno para la configuración de los datos en entorno de terminal local.]
+- [Acceder a la aplicación mediante la url `http://confucionotas/`]
+
+### Descargar e inicializar el repositorio del proyecto:
+
+Ejecutar los siguientes comandos desde el terminal:
+
+```
+ #Ingresar en el directorio donde se alojara la aplicación
+ cd var/www/html/
+ 
+ #Descargar el repositorio mediante el comando:
+  git clone http://gitlab.ubv.edu.ve/comunidad-desarrollo-ubv/confucio_notas.git
+ 
+ #Crear el archivo .gitignore para ignorar el seguimiento de archivos innecesarios:
+ touch .gitignore
+
+ #Configurar el archivo .gitignore:
+ nano .gitignore
+ 
+ #Copiar y pegar los siguiente:
+
+ # -- Editores -----------------------------------------
+ # vim
+ .*.sw[a-z]
+ *.un~
+ Session.vim
+ .netrwhist
+
+ # eclipse
+ *.pydevproject
+ .project
+ .metadata
+ bin/**
+ tmp/**
+ tmp/**/*
+ *.tmp
+ *.bak
+ *.swp
+ *~.nib
+ local.properties
+ .classpath
+ .settings/
+ .loadpath
+ .externalToolBuilders/
+ *.launch
+ .buildpath
+
+ # phpstorm
+ .idea/
+
+ # textmate
+ *.tmproj
+ *.tmproject
+ tmtags
+
+ # sublimetext
+ /*.sublime-project
+ *.sublime-workspace
+
+ # netbeans
+ nbproject/private/
+ nbproject/
+ build/
+ nbbuild/
+ dist/
+ nbdist/
+ nbactions.xml
+ nb-configuration.xml
+
+ # -- Sistemas Operativos ------------------------------
+ # Windows
+ Thumbs.db
+ ehthumbs.db
+ Desktop.ini
+ $RECYCLE.BIN/
+
+ # Linux
+ .*
+ .gitignore
+ !.htaccess
+ *~
+
+ # Mac OS X
+ .DS_Store
+ .AppleDouble
+ .LSOverride
+ Icon
+ ._*
+ .Spotlight-V100
+ .Trashes
+```
+
+### Configurar el Servidor Virtual de apache para la aplicación confucionotas:
+
+Ejecutar los siguientes comandos desde el terminal:
+
+```
+ #crear el servidor virtual de la aplicación
+ sudo nano /etc/apache2/site-available/confucionotas.conf
+ 
+ #Copiar lo siguiente en el contenido del archivo
+ 
+ <VirtualHost *:80>
+    ServerName      confucionotas
+    ServerAlias     confucionotas
+
+    SetEnv PHP_CONFUCIO_BDUSR              "usuario"
+    SetEnv PHP_CONFUCIO_BDHOST             "ip_BD"
+    SetEnv PHP_CONFUCIO_BDPWD              'clave_usuario_BD'
+    SetEnv PHP_CONFUCIO_BDNAME             "confucio"
+
+    DocumentRoot    "/var/www/html/confucio_notas"
+    DirectoryIndex  index.php
+
+    <Directory "/var/www/html/confucio_notas">
+        AllowOverride None
+        Allow from All
+
+        <IfModule mod_rewrite.c>
+            Options -MultiViews
+            RewriteEngine On
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^(.*)$ index.php [QSA,L]
+        </IfModule>
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error_confucionotas.log
+    CustomLog ${APACHE_LOG_DIR}/access_confucionotas.log combined
+
+    KeepAlive            On
+    MaxKeepAliveRequests 200
+    KeepAliveTimeout     5
+
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE "application/atom+xml" \
+                                      "application/javascript" \
+                                      "application/json" \
+                                      "application/rss+xml" \
+                                      "application/x-javascript" \
+                                      "application/xhtml+xml" \
+                                      "application/xml" \
+                                      "image/svg+xml" \
+                                      "text/css" \
+                                      "text/html" \
+                                      "text/javascript" \
+                                      "text/plain" \
+                                      "text/xml"
+    </IfModule>
+
+    <IfModule mod_headers.c>
+        Header append Vary User-Agent env=!dont-vary
+
+        ExpiresActive On
+        ExpiresDefault "now plus 1 week"
+        ExpiresByType image/x-icon "now plus 1 month"
+        ExpiresByType image/gif    "now plus 1 month"
+        ExpiresByType image/png    "now plus 1 month"
+        ExpiresByType image/jpeg   "now plus 1 month"
+    </IfModule>
+</VirtualHost>
+
+ 
+ ```
+
+### Crear la Base de datos en el servidor Postgres:
+
+Mediante el sistema gestor de base de datos de su preferencia cree la base de datos con el nombre de confucionotas
+y una codificación de UTF-8
+```
+postgres@usuario# createdb confucio
+```
+
+### Habilitar el servidor virtual y agregar a la lista de servidores conocidos:
+
+```
+ #habilitar el servidor virtual mediante el siguiente comando:
+ sudo a2ensite confucionotas.conf
+ 
+ #Agregar a la lista de servidores conocidos:
+ sudo nano /etc/hosts/
+ 127.0.0.1   localhost  confucionotas
+ 
+ #Agregar en la primera linea el nombre del servidor (confucionotas)
+
+ #reiniciar el servicio de apache
+ sudo service apache2 restart
+
+ ```
+ 
+### Acceder a la aplicación mediante la url http://confucionotas/
+
+Una vez instalada y configurada la aplicación podrá acceder a ella mediante la url http://confucionotas/
+ 
+ 
+Contacto 
+----------
+
+### Unidad de Desarrollo de la Dirección General de TIT de la Universidad Bolivariana de Venezuela
+
+ Yuribay Alberti
+ tlf: 02126063068,
+ Alcides Rausseo.
+ tlf: 02126063387,
+ Euglis Lopez 
+ correo: elopez@ubv.edu.ve
+ tlf: 02126063068
+
+### Mediante la plataforma de comunicación de la Dirección General de TIT
+
+ http://tecnosocial.ubv.edu.ve/

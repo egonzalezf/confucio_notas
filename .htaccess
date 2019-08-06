@@ -1,0 +1,10 @@
+# Activar RewriteEngine
+RewriteEngine on
+
+#   Entrada:  verificar/codigo
+#   Salida:   vista/certificado_estudiante.php?cod_estudiante=valor
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^verificar/(.*)/?$ vista/verificacion.php?cod_estudiante=$1 [L]
+

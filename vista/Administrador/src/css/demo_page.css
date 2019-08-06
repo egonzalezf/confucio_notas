@@ -1,0 +1,104 @@
+ border-bottom: 1px solid rgba(38, 185, 154, 0.4)
+}
+.dataTables_paginate a {
+    background: #ff0000
+}
+.dataTables_wrapper {
+    position: relative;
+    clear: both;
+    zoom: 1
+}
+.dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 30px;
+    margin-left: -125px;
+    margin-top: -15px;
+    padding: 14px 0 2px 0;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    background-color: white
+}
+.dataTables_length {
+    width: 40%;
+    float: left
+}
+.dataTables_filter {
+    width: 50%;
+    float: right;
+    text-align: right
+}
+.dataTables_info {
+    width: 60%;
+    float: left
+}
+.dataTables_paginate {
+    float: right;
+    text-align: right
+}
+table.dataTable th.focus,
+table.dataTable td.focus {
+    outline: 2px solid #1ABB9C !important;
+    outline-offset: -1px
+}
+table.display {
+    margin: 0 auto;
+    clear: both;
+    width: 100%
+}
+table.display thead th {
+    padding: 8px 18px 8px 10px;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    cursor: pointer
+}
+table.display tfoot th {
+    padding: 3px 18px 3px 10px;
+    border-top: 1px solid black;
+    font-weight: bold
+}
+table.display tr.heading2 td {
+    border-bottom: 1px solid #aaa
+}
+table.display td {
+    padding: 3px 10px
+}
+table.display td.center {
+    text-align: center
+}
+table.display thead th:active,
+table.display thead td:active {
+    outline: none
+}
+.dataTables_scroll {
+    clear: both
+}
+.dataTables_scrollBody {
+    *margin-top: -1px;
+    -webkit-overflow-scrolling: touch
+}
+.top .dataTables_info {
+    float: none
+}
+.clear {
+    clear: both
+}
+.dataTables_empty {
+    text-align: center
+}
+tfoot input {
+    margin: 0.5em 0;
+    width: 100%;
+    color: #444
+}
+tfoot input.search_init {
+    color: #999
+}
+td.group {
+    background-color: #d1cfd0;
+    border-bottom: 2px solid #A19B9E;
+    border-top: 2px s
